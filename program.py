@@ -126,13 +126,18 @@ def read_num():
     return create_num(real, imaginary)
 
 def add_num_ui(num_list):
-    num = read_num()
 
-    if num == None:
-        print("Invalid real or imaginary part")
-        return
+    while(True):
+        num = read_num()
+        if num == None:
+            print("Invalid real or imaginary part")
+            return
+        num_list.append(num)
 
-    num_list.append(num)
+        cont = input("Input '-' to stop / '+' to continue ")
+        if cont == '-':
+            return
+
 
 def display_numbers(num_list):
     for num in num_list:
