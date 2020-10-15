@@ -22,7 +22,12 @@ def get_imaginary(num):
 
 
 def create_num(real, imaginary):
-
+    """
+    Gets a real and imaginary part and returns the corresponding complex number
+    :param real: real part of the complex number
+    :param imaginary: imaginary part
+    :return: the complex number
+    """
     num = []
 
     num.append(real)  # num[0] = real part
@@ -71,21 +76,22 @@ def seq2(num_list):
     seq = []
     seqsum = add(num_list[0],num_list[1]) # initalizes the sum of the current sequence to the sum of the first pair in the list
 
-    for i in range(1,len(num_list),2): # step of 2 in order to get pairs
-        z1 = num_list[i-1] # first number in current pair
-        z2 = num_list[i] # second number in current pair
-        sum = add(z1,z2)  # sum of the pair
+    for k in range (1, len(num_list)):
+        for i in range(k,len(num_list),2): # step of 2 in order to get pairs
+            z1 = num_list[i-1] # first number in current pair
+            z2 = num_list[i] # second number in current pair
+            sum = add(z1,z2)  # sum of the pair
 
-        if sum == seqsum: # checks if the sum of the current pair is equal to the sum corresponding to the current sequence
-            seq.append(z1)
-            seq.append(z2)
-        else:
-            if len(seq) > len(maxseq): # if it's not equal then check if length of the current sequence is bigger than current maximum
-                maxseq = seq[:]
-            seq.clear() # end current sequence
-            seqsum = sum # start a new sequence by setting its corresponding pair sum to the sum of the current pair
-            seq.append(z1)
-            seq.append(z2) # add current pair to the new sequence
+            if sum == seqsum: # checks if the sum of the current pair is equal to the sum corresponding to the current sequence
+                seq.append(z1)
+                seq.append(z2)
+            else:
+                if len(seq) > len(maxseq): # if it's not equal then check if length of the current sequence is bigger than current maximum
+                    maxseq = seq[:]
+                seq.clear() # end current sequence
+                seqsum = sum # start a new sequence by setting its corresponding pair sum to the sum of the current pair
+                seq.append(z1)
+                seq.append(z2) # add current pair to the new sequence
 
     if(len(seq) > len(maxseq)):
         maxseq = seq[:]
@@ -151,11 +157,11 @@ def print_menu():
     print("0. Exit")
 
 def test_init(num_list):
+    num_list.append(create_num(2,7))
+    num_list.append(create_num(1,3))
     num_list.append(create_num(1,4))
     num_list.append(create_num(1,3))
-    num_list.append(create_num(2,3))
-    num_list.append(create_num(4,2))
-    num_list.append(create_num(6,10))
+    num_list.append(create_num(1,4))
     num_list.append(create_num(7,2))
     num_list.append(create_num(100,20))
     num_list.append(create_num(1,1))
@@ -185,5 +191,3 @@ def start():
 
 start()
 
-
-# print('Hello A2'!) -> prints aren't allowed here!
